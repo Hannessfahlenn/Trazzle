@@ -9,8 +9,8 @@
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --bg: #fffaf0;
@@ -41,7 +41,7 @@
 
     body {
       margin: 0;
-      font-family: "Poppins", sans-serif;
+      font-family: "Roboto", sans-serif;
       background: var(--bg);
       color: var(--text-primary);
       display: flex;
@@ -49,10 +49,9 @@
       align-items: center;
       justify-content: center;
       padding: 40px 0;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    /* ===== CARD CONTAINER ===== */
     .card {
       width: min(94%, 1000px);
       background: var(--surface);
@@ -63,155 +62,138 @@
       position: relative;
       overflow: hidden;
     }
-    
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -120px;
-      right: -120px;
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 164, 92, 0.06));
-      border-radius: 50%;
-      z-index: 0;
-    }
-    
-    .card::after {
-      content: "";
-      position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 250px;
-      height: 250px;
-      background: linear-gradient(135deg, rgba(255, 164, 92, 0.05), rgba(255, 107, 107, 0.07));
-      border-radius: 50%;
-      z-index: 0;
-    }
 
-    /* ===== CONTENT & TYPOGRAPHY ===== */
-    section { 
-      max-width: 720px; 
-      margin-inline: auto; 
+    /* Removed background decorations */
+
+    section {
+      max-width: 720px;
+      margin-inline: auto;
       margin-bottom: 3.5rem;
       position: relative;
       z-index: 1;
-    }
-    
-    .card section:last-of-type { 
-      margin-bottom: 0; 
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.8s ease-out forwards;
     }
 
-    h1 { 
-      font-size: clamp(2.5rem, 5vw, 3.4rem); 
-      line-height: 1.2; 
-      margin: 0; 
-      font-weight: 700;
-      letter-spacing: -0.02em;
+    section:nth-of-type(1) { animation-delay: 0.1s; }
+    section:nth-of-type(2) { animation-delay: 0.25s; }
+    section:nth-of-type(3) { animation-delay: 0.4s; }
+    section:nth-of-type(4) { animation-delay: 0.55s; }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.2rem);
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: -0.015em;
     }
-    
-    h2 { 
-      font-size: 1.6rem; 
-      line-height: 1.3; 
-      margin: 0 0 1.2rem 0;
-      font-weight: 600;
+
+    h2 {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      margin: 0 0 1.25rem 0;
+      font-weight: 700;
       color: var(--accent-primary);
     }
-    
-    .gradient { 
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
 
-    p.lead { 
-      font-size: 1.25rem; 
+    p.lead {
+      font-size: 1.2rem;
       color: var(--text-muted);
       margin-top: 1.5rem;
-      line-height: 1.7;
-      font-weight: 300;
+      line-height: 1.8;
+      font-weight: 400;
     }
-    
+
     p {
       margin: 1rem 0;
       color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
     }
-    
+
     a {
       color: var(--accent-primary);
       text-decoration: none;
       transition: var(--transition);
       font-weight: 500;
     }
-    
+
     a:hover {
       color: var(--accent-secondary);
     }
 
-    /* ===== EMAIL CARD STYLE ===== */
-    .email-card { 
+    .gradient {
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+
+    .email-card {
       background: var(--surface-muted);
       border-radius: var(--radius);
       padding: 2.5rem;
-      display: flex; 
-      flex-direction: column; 
-      gap: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
       box-shadow: 0 6px 20px rgba(255, 107, 107, 0.04);
-      transition: var(--transition);
       border: 1px solid rgba(255, 107, 107, 0.06);
+      transition: var(--transition);
     }
-    
-    .email-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.08);
+
+    .email-card form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
-    
-    .email-card form { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 1rem; 
-    }
-    
-    .email-card input[type="email"] { 
-      flex: 1 1 260px; 
-      padding: 1rem 1.25rem; 
-      border: 1px solid rgba(255, 107, 107, 0.15); 
-      border-radius: var(--radius-sm); 
+
+    .email-card input[type="email"] {
+      flex: 1 1 260px;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255, 107, 107, 0.15);
+      border-radius: var(--radius-sm);
       font-size: 1rem;
-      font-family: "Poppins", sans-serif;
+      font-family: "Roboto", sans-serif;
       transition: var(--transition);
       background: var(--surface);
     }
-    
-    .email-card input[type="email"]::placeholder {
-      color: #aaa5b9;
+
+    .email-card input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15);
     }
-    
-    .email-card input[type="email"]:focus { 
-      outline: none; 
-      border-color: var(--accent-primary); 
-      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15); 
-    }
-    
-    .btn { 
-      flex: 0 0 auto; 
-      padding: 1rem 2rem; 
-      border: none; 
-      border-radius: var(--radius-sm); 
-      font-size: 1rem; 
-      font-weight: 600; 
-      color: #fff; 
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); 
-      cursor: pointer; 
-      transition: var(--transition); 
-      font-family: "Poppins", sans-serif;
+
+    .btn {
+      flex: 0 0 auto;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: "Roboto", sans-serif;
       box-shadow: var(--shadow-btn);
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
-    
+
+    .btn:hover {
+      transform: scale(1.04) translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
+    }
+
     .btn::before {
       content: "";
       position: absolute;
@@ -224,77 +206,40 @@
       transition: var(--transition);
       z-index: -1;
     }
-    
-    .btn:hover { 
-      transform: translateY(-3px); 
-      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); 
-    }
-    
+
     .btn:hover::before {
       opacity: 1;
     }
-    
-    .btn:active { 
-      transform: translateY(0); 
-      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.25); 
-    }
-    
-    .icon {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 0.5rem;
-      fill: currentColor;
-    }
 
-    footer { 
-      text-align: center; 
-      font-size: 0.9rem; 
-      color: var(--text-muted); 
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
       margin-top: 4rem;
       position: relative;
       z-index: 1;
       font-weight: 300;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards 0.85s;
     }
-    
+
     .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: -0.015em;
       color: var(--accent-primary);
-      letter-spacing: -0.02em;
       margin-bottom: 1.5rem;
       display: inline-block;
     }
-    
-    .highlight {
-      font-weight: 500;
-      color: var(--accent-primary);
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeIn { 
-      from { opacity: 0; transform: scale(0.98); } 
-      to { opacity: 1; transform: scale(1); } 
-    }
-    
-    @keyframes slideUp { 
-      from { opacity: 0; transform: translateY(30px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-    
-    section { 
-      opacity: 0; 
-      transform: translateY(30px); 
-      animation: slideUp 0.8s ease-out forwards; 
-    }
-    
-    section:nth-of-type(1) { animation-delay: 0.1s; }
-    section:nth-of-type(2) { animation-delay: 0.25s; }
-    section:nth-of-type(3) { animation-delay: 0.4s; }
-    section:nth-of-type(4) { animation-delay: 0.55s; }
-    
-    footer { 
-      opacity: 0; 
-      animation: fadeIn 0.8s ease-out forwards 0.85s; 
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
@@ -303,7 +248,7 @@
       h1 { font-size: clamp(2.2rem, 5vw, 3rem); }
       h2 { font-size: 1.4rem; }
     }
-    
+
     @media (max-width: 480px) {
       .card { padding: clamp(2rem, 6vw, 2.5rem); }
       section { margin-bottom: 2.5rem; }
@@ -314,31 +259,24 @@
 </head>
 <body>
   <div class="card">
-    <!-- Logo -->
     <section>
       <span class="logo">Trazzle</span>
-      
-      <!-- 🎯 Headline -->
       <h1 class="gradient">The smartest way to plan where you'll stay</h1>
       <p class="lead">We're building <strong>Trazzle</strong> — the smartest way to plan multi-city hotel stays.</p>
     </section>
 
-    <!-- ✨ Subheading / Body -->
     <section>
       <p class="lead">Multi-city trips deserve better than spreadsheets, tabs and guesswork. Trazzle makes hotel planning <span class="highlight">visual, flexible and even a little fun</span>. Build your ideal itinerary night by night and make every stay count.</p>
     </section>
 
-    <!-- 🚀 What We're Working On -->
     <section>
       <h2>What We're Working On</h2>
       <p>We're early in development — currently evaluating hotel data providers and designing an experience for travelers who like planning with clarity and control.</p>
     </section>
 
-    <!-- 📨 Stay in the Loop -->
     <section class="email-card">
       <h2>Stay in the Loop</h2>
       <p>Want early access or just curious about the launch? Drop your email and we'll keep you posted.</p>
-      <!-- Formspree endpoint wired -->
       <form action="https://formspree.io/f/mkgrnzbp" method="POST">
         <input type="email" name="email" aria-label="Email address" placeholder="you@example.com" required />
         <button class="btn" type="submit">
