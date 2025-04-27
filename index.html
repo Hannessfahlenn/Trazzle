@@ -13,18 +13,18 @@
   
   <style>
     :root {
-      --bg: #f8f9ff;
+      --bg: #fffaf0;
       --surface: #ffffff;
-      --surface-muted: #f4f6ff;
-      --text-primary: #1a1a2e;
-      --text-muted: #5f6683;
-      --accent-primary: #4e54ff;
-      --accent-secondary: #6c3ce6;
+      --surface-muted: #fff5e6;
+      --text-primary: #2d3047;
+      --text-muted: #5c6073;
+      --accent-primary: #ff6b6b;
+      --accent-secondary: #ffa45c;
       --radius-lg: 28px;
       --radius: 16px;
       --radius-sm: 8px;
-      --shadow-soft: 0 10px 40px rgba(78, 84, 255, 0.08);
-      --shadow-btn: 0 8px 20px rgba(78, 84, 255, 0.25);
+      --shadow-soft: 0 10px 40px rgba(255, 107, 107, 0.08);
+      --shadow-btn: 0 8px 20px rgba(255, 107, 107, 0.25);
       --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -71,7 +71,7 @@
       right: -120px;
       width: 300px;
       height: 300px;
-      background: linear-gradient(135deg, rgba(78, 84, 255, 0.08), rgba(108, 60, 230, 0.06));
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 164, 92, 0.06));
       border-radius: 50%;
       z-index: 0;
     }
@@ -83,7 +83,7 @@
       left: -100px;
       width: 250px;
       height: 250px;
-      background: linear-gradient(135deg, rgba(108, 60, 230, 0.05), rgba(78, 84, 255, 0.07));
+      background: linear-gradient(135deg, rgba(255, 164, 92, 0.05), rgba(255, 107, 107, 0.07));
       border-radius: 50%;
       z-index: 0;
     }
@@ -123,19 +123,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      position: relative;
-    }
-    
-    .gradient::after {
-      content: "";
-      position: absolute;
-      bottom: 6px;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, rgba(78, 84, 255, 0.15), rgba(108, 60, 230, 0.15));
-      border-radius: 10px;
-      z-index: -1;
     }
 
     p.lead { 
@@ -170,14 +157,14 @@
       display: flex; 
       flex-direction: column; 
       gap: 1.2rem;
-      box-shadow: 0 6px 20px rgba(78, 84, 255, 0.04);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.04);
       transition: var(--transition);
-      border: 1px solid rgba(78, 84, 255, 0.06);
+      border: 1px solid rgba(255, 107, 107, 0.06);
     }
     
     .email-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(78, 84, 255, 0.08);
+      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.08);
     }
     
     .email-card form { 
@@ -189,7 +176,7 @@
     .email-card input[type="email"] { 
       flex: 1 1 260px; 
       padding: 1rem 1.25rem; 
-      border: 1px solid rgba(78, 84, 255, 0.15); 
+      border: 1px solid rgba(255, 107, 107, 0.15); 
       border-radius: var(--radius-sm); 
       font-size: 1rem;
       font-family: "Poppins", sans-serif;
@@ -198,13 +185,13 @@
     }
     
     .email-card input[type="email"]::placeholder {
-      color: #a3a9c2;
+      color: #aaa5b9;
     }
     
     .email-card input[type="email"]:focus { 
       outline: none; 
       border-color: var(--accent-primary); 
-      box-shadow: 0 0 0 4px rgba(78, 84, 255, 0.15); 
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15); 
     }
     
     .btn { 
@@ -240,7 +227,7 @@
     
     .btn:hover { 
       transform: translateY(-3px); 
-      box-shadow: 0 10px 25px rgba(78, 84, 255, 0.35); 
+      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); 
     }
     
     .btn:hover::before {
@@ -249,7 +236,7 @@
     
     .btn:active { 
       transform: translateY(0); 
-      box-shadow: 0 5px 15px rgba(78, 84, 255, 0.25); 
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.25); 
     }
     
     .icon {
@@ -280,7 +267,7 @@
     
     .highlight {
       font-weight: 500;
-      color: var(--text-primary);
+      color: var(--accent-primary);
     }
 
     /* ===== ANIMATIONS ===== */
@@ -304,7 +291,6 @@
     section:nth-of-type(2) { animation-delay: 0.25s; }
     section:nth-of-type(3) { animation-delay: 0.4s; }
     section:nth-of-type(4) { animation-delay: 0.55s; }
-    section:nth-of-type(5) { animation-delay: 0.7s; }
     
     footer { 
       opacity: 0; 
@@ -330,7 +316,7 @@
   <div class="card">
     <!-- Logo -->
     <section>
-      <span class="logo">✈️ Trazzle</span>
+      <span class="logo">Trazzle</span>
       
       <!-- 🎯 Headline -->
       <h1 class="gradient">The smartest way to plan where you'll stay</h1>
@@ -364,13 +350,7 @@
       </form>
     </section>
 
-    <!-- 🔗 Contact -->
-    <section>
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:trazzleplanner@gmail.com">trazzleplanner@gmail.com</a></p>
-    </section>
-
-    <footer>© 2025 Trazzle — Revolutionizing multi-city travel planning</footer>
+    <footer>2025 Trazzle — Revolutionizing multi-city travel planning</footer>
   </div>
 </body>
 </html>
