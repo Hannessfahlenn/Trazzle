@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trazzle | The smartest way to plan where you'll stay</title>
+  <meta name="description" content="Trazzle helps you plan multi-city hotel itineraries visually and effortlessly." />
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --bg: #f8f9ff;
+      --surface: #ffffff;
+      --surface-muted: #f4f6ff;
+      --text-primary: #1a1a2e;
+      --text-muted: #5f6683;
+      --accent-primary: #4e54ff;
+      --accent-secondary: #6c3ce6;
+      --radius-lg: 28px;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --shadow-soft: 0 10px 40px rgba(78, 84, 255, 0.08);
+      --shadow-btn: 0 8px 20px rgba(78, 84, 255, 0.25);
+      --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
+    
+    html { 
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+      line-height: 1.6;
+    }
+
+    /* ===== CARD CONTAINER ===== */
+    .card {
+      width: min(94%, 1000px);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: clamp(2.5rem, 6vw, 5rem);
+      animation: fadeIn 1s ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, rgba(78, 84, 255, 0.08), rgba(108, 60, 230, 0.06));
+      border-radius: 50%;
+      z-index: 0;
+    }
+    
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, rgba(108, 60, 230, 0.05), rgba(78, 84, 255, 0.07));
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    /* ===== CONTENT & TYPOGRAPHY ===== */
+    section { 
+      max-width: 720px; 
+      margin-inline: auto; 
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .card section:last-of-type { 
+      margin-bottom: 0; 
+    }
+
+    h1 { 
+      font-size: clamp(2.5rem, 5vw, 3.4rem); 
+      line-height: 1.2; 
+      margin: 0; 
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    h2 { 
+      font-size: 1.6rem; 
+      line-height: 1.3; 
+      margin: 0 0 1.2rem 0;
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+    
+    .gradient { 
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+    
+    .gradient::after {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(78, 84, 255, 0.15), rgba(108, 60, 230, 0.15));
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    p.lead { 
+      font-size: 1.25rem; 
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    
+    p {
+      margin: 1rem 0;
+      color: var(--text-muted);
+    }
+    
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    
+    a:hover {
+      color: var(--accent-secondary);
+    }
+
+    /* ===== EMAIL CARD STYLE ===== */
+    .email-card { 
+      background: var(--surface-muted);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: flex; 
+      flex-direction: column; 
+      gap: 1.2rem;
+      box-shadow: 0 6px 20px rgba(78, 84, 255, 0.04);
+      transition: var(--transition);
+      border: 1px solid rgba(78, 84, 255, 0.06);
+    }
+    
+    .email-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(78, 84, 255, 0.08);
+    }
+    
+    .email-card form { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 1rem; 
+    }
+    
+    .email-card input[type="email"] { 
+      flex: 1 1 260px; 
+      padding: 1rem 1.25rem; 
+      border: 1px solid rgba(78, 84, 255, 0.15); 
+      border-radius: var(--radius-sm); 
+      font-size: 1rem;
+      font-family: "Poppins", sans-serif;
+      transition: var(--transition);
+      background: var(--surface);
+    }
+    
+    .email-card input[type="email"]::placeholder {
+      color: #a3a9c2;
+    }
+    
+    .email-card input[type="email"]:focus { 
+      outline: none; 
+      border-color: var(--accent-primary); 
+      box-shadow: 0 0 0 4px rgba(78, 84, 255, 0.15); 
+    }
+    
+    .btn { 
+      flex: 0 0 auto; 
+      padding: 1rem 2rem; 
+      border: none; 
+      border-radius: var(--radius-sm); 
+      font-size: 1rem; 
+      font-weight: 600; 
+      color: #fff; 
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); 
+      cursor: pointer; 
+      transition: var(--transition); 
+      font-family: "Poppins", sans-serif;
+      box-shadow: var(--shadow-btn);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 10px 25px rgba(78, 84, 255, 0.35); 
+    }
+    
+    .btn:hover::before {
+      opacity: 1;
+    }
+    
+    .btn:active { 
+      transform: translateY(0); 
+      box-shadow: 0 5px 15px rgba(78, 84, 255, 0.25); 
+    }
+    
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+      fill: currentColor;
+    }
+
+    footer { 
+      text-align: center; 
+      font-size: 0.9rem; 
+      color: var(--text-muted); 
+      margin-top: 4rem;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+    
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    
+    .highlight {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: scale(0.98); } 
+      to { opacity: 1; transform: scale(1); } 
+    }
+    
+    @keyframes slideUp { 
+      from { opacity: 0; transform: translateY(30px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    section { 
+      opacity: 0; 
+      transform: translateY(30px); 
+      animation: slideUp 0.8s ease-out forwards; 
+    }
+    
+    section:nth-of-type(1) { animation-delay: 0.1s; }
+    section:nth-of-type(2) { animation-delay: 0.25s; }
+    section:nth-of-type(3) { animation-delay: 0.4s; }
+    section:nth-of-type(4) { animation-delay: 0.55s; }
+    section:nth-of-type(5) { animation-delay: 0.7s; }
+    
+    footer { 
+      opacity: 0; 
+      animation: fadeIn 0.8s ease-out forwards 0.85s; 
+    }
+
+    @media (max-width: 768px) {
+      section { margin-bottom: 2.8rem; }
+      .email-card { padding: 2rem; }
+      h1 { font-size: clamp(2.2rem, 5vw, 3rem); }
+      h2 { font-size: 1.4rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .card { padding: clamp(2rem, 6vw, 2.5rem); }
+      section { margin-bottom: 2.5rem; }
+      .email-card { padding: 1.75rem; }
+      .btn { width: 100%; margin-top: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Logo -->
+    <section>
+      <span class="logo">✈️ Trazzle</span>
+      
+      <!-- 🎯 Headline -->
+      <h1 class="gradient">The smartest way to plan where you'll stay</h1>
+      <p class="lead">We're building <strong>Trazzle</strong> — the smartest way to plan multi-city hotel stays.</p>
+    </section>
+
+    <!-- ✨ Subheading / Body -->
+    <section>
+      <p class="lead">Multi-city trips deserve better than spreadsheets, tabs and guesswork. Trazzle makes hotel planning <span class="highlight">visual, flexible and even a little fun</span>. Build your ideal itinerary night by night and make every stay count.</p>
+    </section>
+
+    <!-- 🚀 What We're Working On -->
+    <section>
+      <h2>What We're Working On</h2>
+      <p>We're early in development — currently evaluating hotel data providers and designing an experience for travelers who like planning with clarity and control.</p>
+    </section>
+
+    <!-- 📨 Stay in the Loop -->
+    <section class="email-card">
+      <h2>Stay in the Loop</h2>
+      <p>Want early access or just curious about the launch? Drop your email and we'll keep you posted.</p>
+      <!-- Formspree endpoint wired -->
+      <form action="https://formspree.io/f/mkgrnzbp" method="POST">
+        <input type="email" name="email" aria-label="Email address" placeholder="you@example.com" required />
+        <button class="btn" type="submit">
+          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12L3 4L5 12L3 20L22 12Z" fill="currentColor"/>
+          </svg>
+          Notify Me
+        </button>
+      </form>
+    </section>
+
+    <!-- 🔗 Contact -->
+    <section>
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:trazzleplanner@gmail.com">trazzleplanner@gmail.com</a></p>
+    </section>
+
+    <footer>© 2025 Trazzle — Revolutionizing multi-city travel planning</footer>
+  </div>
+</body>
+</html>
